@@ -1,3 +1,4 @@
+import seleenIdentity from '../../assets/seleen-identity.jpeg.asset.json'
 import { ArrowLeft, CalendarDays, Clock3 } from 'lucide-react'
 import { formatArabicDate, formatRiyadhTime, getRiyadhCalendarDate } from '../utils/date'
 
@@ -20,7 +21,7 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
 
       <div className="hero-identity" aria-hidden="true">
         <div className="hero-frame">
-          <img src="/assets/seleen-fitness-identity.jpeg" alt="" fetchPriority="high" />
+          <img src={seleenIdentity.url} alt="" fetchPriority="high" />
         </div>
       </div>
 

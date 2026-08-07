@@ -1,3 +1,4 @@
+import seleenIdentity from '../../assets/seleen-identity.jpeg.asset.json'
 import { ArrowRight, CalendarDays, Check, Dumbbell, RotateCcw } from 'lucide-react'
 import ExerciseList from './ExerciseList'
 import ProgressRing from './ProgressRing'
@@ -32,7 +33,7 @@ export default function ScheduleScreen({
           <ArrowRight aria-hidden="true" />
         </button>
         <div className="schedule-brand">
-          <img src="/assets/seleen-fitness-identity.jpeg" alt="" />
+          <img src={seleenIdentity.url} alt="" />
           <span>سـيّلين</span>
         </div>
         <div className="header-balance" aria-hidden="true" />
