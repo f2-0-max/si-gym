@@ -7,6 +7,7 @@ import { getCurrentWeek, getTodayWorkout } from './utils/date'
 const STORAGE_KEY = 'seleen-fitness-progress-v1'
 
 function readProgress() {
+  if (typeof window === 'undefined') return {}
   try {
     return JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || {}
   } catch {
@@ -18,7 +19,11 @@ export default function App() {
   const [now, setNow] = useState(() => new Date())
   const [screen, setScreen] = useState('entry')
   const [isLeaving, setIsLeaving] = useState(false)
-  const [progressByDay, setProgressByDay] = useState(readProgress)
+  const [progressByDay, setProgressByDay] = useState({})
+
+  useEffect(() => {
+    setProgressByDay(readProgress())
+  }, [])
 
   const todayWorkout = useMemo(() => getTodayWorkout(now), [now])
   const [selectedKey, setSelectedKey] = useState(todayWorkout.key)
@@ -41,6 +46,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progressByDay))
   }, [progressByDay])
 

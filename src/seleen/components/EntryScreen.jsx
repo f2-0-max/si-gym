@@ -1,3 +1,5 @@
+import seleenIdentity from '../../assets/seleen-fitness-identity.jpeg.asset.json'
+import dumbbellHands from '../../assets/seleen-dumbbell-hands.webp.asset.json'
 import { ArrowLeft, CalendarDays, Clock3 } from 'lucide-react'
 import SignatureMark from './SignatureMark'
 import { formatArabicDate, formatRiyadhTime, getRiyadhCalendarDate } from '../utils/date'
@@ -21,7 +23,7 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
 
       <div className="hero-identity" aria-hidden="true">
         <div className="hero-frame">
-          <img src="/assets/seleen-fitness-identity.jpeg" alt="" fetchPriority="high" />
+          <img src={seleenIdentity.url} alt="" fetchPriority="high" />
         </div>
       </div>
 
@@ -39,7 +41,7 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
         <div className="entry-action">
           <img
             className="entry-hands"
-            src="/assets/seleen-dumbbell-hands.webp"
+            src={dumbbellHands.url}
             alt=""
             aria-hidden="true"
             fetchPriority="high"

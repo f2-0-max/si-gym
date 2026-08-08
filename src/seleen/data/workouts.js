@@ -1,3 +1,11 @@
+import saturdayCard from '../../assets/saturday.webp.asset.json'
+import sundayCard from '../../assets/sunday.webp.asset.json'
+import mondayCard from '../../assets/monday.webp.asset.json'
+import tuesdayCard from '../../assets/tuesday.webp.asset.json'
+import wednesdayCard from '../../assets/wednesday.webp.asset.json'
+import thursdayCard from '../../assets/thursday.webp.asset.json'
+import fridayCard from '../../assets/friday.webp.asset.json'
+
 export const WEEK_DAYS = [
   {
     key: 'saturday',
@@ -5,7 +13,7 @@ export const WEEK_DAYS = [
     label: 'السبت',
     shortLabel: 'سبت',
     title: 'قوة الجزء العلوي',
-    cardImage: '/assets/daily-cards/saturday.webp',
+    cardImage: saturdayCard.url,
     muscles: 'صدر • أكتاف • تراي • باي • بطن',
     description: 'جلسة متوازنة لبناء قوة الجزء العلوي وإنهائها بتمارين البطن.',
     exercises: [
@@ -24,7 +32,7 @@ export const WEEK_DAYS = [
     label: 'الأحد',
     shortLabel: 'أحد',
     title: 'أرجل وقلوتس',
-    cardImage: '/assets/daily-cards/sunday.webp',
+    cardImage: sundayCard.url,
     muscles: 'أرجل • مؤخرة • سمانة',
     description: 'تركيز على القوة والثبات مع تدرّج هادئ في الأحمال.',
     exercises: [
@@ -42,7 +50,7 @@ export const WEEK_DAYS = [
     label: 'الاثنين',
     shortLabel: 'اثنين',
     title: 'ظهر وذراعان',
-    cardImage: '/assets/daily-cards/monday.webp',
+    cardImage: mondayCard.url,
     muscles: 'ظهر • تراي • باي • كتف خلفي',
     description: 'سحب مضبوط لتحسين قوة الظهر وثبات الكتفين.',
     exercises: [
@@ -60,7 +68,7 @@ export const WEEK_DAYS = [
     label: 'الثلاثاء',
     shortLabel: 'ثلاثاء',
     title: 'قوة الأرجل',
-    cardImage: '/assets/daily-cards/tuesday.webp',
+    cardImage: tuesdayCard.url,
     muscles: 'أمامية • خلفية • سمانة',
     description: 'جلسة أرجل ثانية بتنوع أكبر وحجم تدريبي متوسط.',
     exercises: [
@@ -78,7 +86,7 @@ export const WEEK_DAYS = [
     label: 'الأربعاء',
     shortLabel: 'أربعاء',
     title: 'تمارين عامة',
-    cardImage: '/assets/daily-cards/wednesday.webp',
+    cardImage: wednesdayCard.url,
     muscles: 'كامل الجسم • لياقة • توازن',
     description: 'حركة شاملة للجسم بإيقاع نشيط وأوزان يمكن التحكم بها.',
     exercises: [
@@ -96,7 +104,7 @@ export const WEEK_DAYS = [
     label: 'الخميس',
     shortLabel: 'خميس',
     title: 'استشفاء نشط',
-    cardImage: '/assets/daily-cards/thursday.webp',
+    cardImage: thursdayCard.url,
     muscles: 'كارديو خفيف • مرونة • تنفّس',
     description: 'يوم خفيف يساعد الجسم على الاستعداد والعودة بنشاط.',
     exercises: [
@@ -112,7 +120,7 @@ export const WEEK_DAYS = [
     label: 'الجمعة',
     shortLabel: 'جمعة',
     title: 'يوم راحة',
-    cardImage: '/assets/daily-cards/friday.webp',
+    cardImage: fridayCard.url,
     muscles: 'OFF',
     description: 'راحة مستحقة. نامي جيدًا، اشربي الماء، واستعدّي لأسبوع جديد.',
     exercises: [],
