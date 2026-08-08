@@ -7,7 +7,7 @@
   --ivory: #f7f1e8;
   --ivory-deep: #ede4d7;
   --ink: #171715;
-  --muted: #746d63;
+  --s-muted: #746d63;
   --burgundy: #74142d;
   --burgundy-deep: #540b20;
   --olive: #8c9816;
@@ -115,7 +115,7 @@ button:focus-visible {
 
 .brand-subtitle {
   margin: 4px 0 0;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -246,7 +246,7 @@ button:focus-visible {
 .today-muscles {
   min-height: 22px;
   margin: 4px 0 0;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -423,7 +423,7 @@ button:focus-visible {
 
 .schedule-heading p {
   margin: 4px 0 0;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.92rem;
   font-weight: 500;
 }
@@ -590,7 +590,7 @@ button:focus-visible {
 }
 
 .daily-visual-caption small {
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.65rem;
 }
 
@@ -687,7 +687,7 @@ button:focus-visible {
 
 .progress-ring-inner span {
   margin-top: -1px;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.62rem;
   font-weight: 600;
 }
@@ -718,7 +718,7 @@ button:focus-visible {
   margin-top: 10px;
   padding-top: 9px;
   border-top: 1px solid var(--line);
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.72rem;
 }
 
@@ -773,7 +773,7 @@ button:focus-visible {
 .workout-title-block .workout-description {
   max-width: 360px;
   margin: 10px auto 0;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.78rem;
   font-weight: 400;
   line-height: 1.75;
@@ -839,7 +839,7 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 4px 12px;
   margin-top: 5px;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.68rem;
 }
 
@@ -921,7 +921,7 @@ button:focus-visible {
   margin-top: 11px;
   padding: 8px;
   border: 0;
-  color: var(--muted);
+  color: var(--s-muted);
   background: transparent;
   cursor: pointer;
   font-size: 0.72rem;
@@ -953,7 +953,7 @@ button:focus-visible {
 .rest-state p {
   max-width: 300px;
   margin: 0 auto;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.78rem;
   line-height: 1.8;
 }
@@ -961,7 +961,7 @@ button:focus-visible {
 .safety-note {
   max-width: 360px;
   margin: 17px auto 0;
-  color: var(--muted);
+  color: var(--s-muted);
   font-size: 0.67rem;
   line-height: 1.75;
   text-align: center;
@@ -997,7 +997,7 @@ button:focus-visible {
   justify-content: center;
   gap: 3px;
   border: 0;
-  color: var(--muted);
+  color: var(--s-muted);
   background: transparent;
   cursor: pointer;
   font-size: 0.7rem;
