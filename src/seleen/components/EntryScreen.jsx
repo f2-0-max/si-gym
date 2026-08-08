@@ -1,5 +1,5 @@
-import seleenIdentity from '../../assets/seleen-identity.jpeg.asset.json'
 import { ArrowLeft, CalendarDays, Clock3 } from 'lucide-react'
+import SignatureMark from './SignatureMark'
 import { formatArabicDate, formatRiyadhTime, getRiyadhCalendarDate } from '../utils/date'
 
 export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
@@ -21,7 +21,7 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
 
       <div className="hero-identity" aria-hidden="true">
         <div className="hero-frame">
-          <img src={seleenIdentity.url} alt="" fetchPriority="high" />
+          <img src="/assets/seleen-fitness-identity.jpeg" alt="" fetchPriority="high" />
         </div>
       </div>
 
@@ -36,10 +36,20 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
         <h1 id="entry-title">{workout.title}</h1>
         <p className="today-muscles">{workout.muscles}</p>
 
-        <button className="primary-button entry-button" type="button" onClick={onEnter}>
-          <span>{isRestDay ? 'عرض جدولي الأسبوعي' : 'دخول إلى جدولي'}</span>
-          <ArrowLeft aria-hidden="true" />
-        </button>
+        <div className="entry-action">
+          <img
+            className="entry-hands"
+            src="/assets/seleen-dumbbell-hands.webp"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <button className="primary-button entry-button" type="button" onClick={onEnter}>
+            <span>{isRestDay ? 'عرض جدولي الأسبوعي' : 'دخول إلى جدولي'}</span>
+            <ArrowLeft aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
       <div className="entry-footer-mark" aria-hidden="true">
@@ -47,6 +57,7 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
         <span className="leaf">◆</span>
         <span />
       </div>
+      <SignatureMark placement="entry-signature" />
     </section>
   )
 }

@@ -7,7 +7,7 @@
   --ivory: #f7f1e8;
   --ivory-deep: #ede4d7;
   --ink: #171715;
-  --s-muted: #746d63;
+  --muted: #746d63;
   --burgundy: #74142d;
   --burgundy-deep: #540b20;
   --olive: #8c9816;
@@ -115,7 +115,7 @@ button:focus-visible {
 
 .brand-subtitle {
   margin: 4px 0 0;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -145,7 +145,7 @@ button:focus-visible {
 
 .hero-frame {
   position: relative;
-  width: min(76vw, 380px);
+  width: min(58vw, 300px);
   aspect-ratio: 1;
 }
 
@@ -246,9 +246,29 @@ button:focus-visible {
 .today-muscles {
   min-height: 22px;
   margin: 4px 0 0;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.8rem;
   font-weight: 500;
+}
+
+.entry-action {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  margin: 3px auto 0;
+}
+
+.entry-hands {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: min(72vw, 310px);
+  height: auto;
+  margin: 0 auto -18px;
+  filter: drop-shadow(0 14px 15px rgba(23, 23, 21, 0.17));
+  pointer-events: none;
+  transform: rotate(-0.8deg);
+  animation: handsSettle 900ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .primary-button {
@@ -278,9 +298,11 @@ button:focus-visible {
 }
 
 .entry-button {
+  position: relative;
+  z-index: 1;
   justify-content: space-between;
   max-width: 430px;
-  margin: 18px auto 0;
+  margin: 0 auto;
   font-size: 1.07rem;
   font-weight: 600;
 }
@@ -292,11 +314,12 @@ button:focus-visible {
 
 .entry-footer-mark {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 10px;
-  height: 26px;
-  margin-top: 14px;
+  height: 78px;
+  margin-top: 8px;
+  padding-bottom: 9px;
   color: var(--olive);
 }
 
@@ -309,6 +332,21 @@ button:focus-visible {
 .entry-footer-mark .leaf {
   font-size: 0.6rem;
   transform: rotate(45deg);
+}
+
+.signature-mark {
+  display: block;
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 7px 11px rgba(51, 28, 13, 0.13));
+}
+
+.entry-signature {
+  position: absolute;
+  bottom: max(9px, env(safe-area-inset-bottom));
+  left: max(11px, env(safe-area-inset-left));
+  z-index: 4;
 }
 
 .schedule-screen {
@@ -385,7 +423,7 @@ button:focus-visible {
 
 .schedule-heading p {
   margin: 4px 0 0;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.92rem;
   font-weight: 500;
 }
@@ -460,6 +498,146 @@ button:focus-visible {
   background: #d8df73;
 }
 
+.daily-visual {
+  overflow: hidden;
+  margin-top: 16px;
+  border: 1px solid rgba(70, 58, 43, 0.16);
+  border-radius: 24px;
+  background: rgba(255, 252, 247, 0.76);
+  box-shadow: var(--shadow);
+}
+
+.daily-visual-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  color: white;
+  background: #10100f;
+  cursor: zoom-in;
+}
+
+.daily-visual-trigger::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+
+.daily-visual-trigger img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: dailyCardReveal 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 320ms ease, filter 320ms ease;
+}
+
+.daily-visual-trigger:hover img {
+  filter: saturate(1.04) contrast(1.02);
+  transform: scale(1.012);
+}
+
+.daily-visual-expand {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 13px;
+  background: rgba(15, 15, 14, 0.66);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  place-items: center;
+}
+
+.daily-visual-expand svg {
+  width: 18px;
+  stroke-width: 1.8;
+}
+
+.daily-visual-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 58px;
+  padding: 10px 15px 11px;
+  border-top: 1px solid var(--line);
+}
+
+.daily-visual-caption > div {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.daily-visual-caption span {
+  color: var(--burgundy);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.daily-visual-caption strong {
+  color: var(--ink);
+  font-size: 0.88rem;
+}
+
+.daily-visual-caption small {
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+.visual-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  padding: max(18px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background: rgba(12, 11, 10, 0.91);
+  backdrop-filter: blur(16px);
+  animation: modalReveal 220ms ease both;
+  place-items: center;
+}
+
+.visual-modal > img {
+  display: block;
+  width: min(100%, 1100px);
+  max-height: 88svh;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
+  object-fit: contain;
+}
+
+.visual-modal-close {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  z-index: 1;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 15px;
+  color: white;
+  background: rgba(15, 15, 14, 0.72);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  place-items: center;
+}
+
+.visual-modal-close svg {
+  width: 23px;
+}
+
 .progress-panel {
   display: flex;
   align-items: center;
@@ -509,7 +687,7 @@ button:focus-visible {
 
 .progress-ring-inner span {
   margin-top: -1px;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.62rem;
   font-weight: 600;
 }
@@ -540,7 +718,7 @@ button:focus-visible {
   margin-top: 10px;
   padding-top: 9px;
   border-top: 1px solid var(--line);
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.72rem;
 }
 
@@ -595,7 +773,7 @@ button:focus-visible {
 .workout-title-block .workout-description {
   max-width: 360px;
   margin: 10px auto 0;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.78rem;
   font-weight: 400;
   line-height: 1.75;
@@ -661,7 +839,7 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 4px 12px;
   margin-top: 5px;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.68rem;
 }
 
@@ -743,7 +921,7 @@ button:focus-visible {
   margin-top: 11px;
   padding: 8px;
   border: 0;
-  color: var(--s-muted);
+  color: var(--muted);
   background: transparent;
   cursor: pointer;
   font-size: 0.72rem;
@@ -775,7 +953,7 @@ button:focus-visible {
 .rest-state p {
   max-width: 300px;
   margin: 0 auto;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.8;
 }
@@ -783,10 +961,15 @@ button:focus-visible {
 .safety-note {
   max-width: 360px;
   margin: 17px auto 0;
-  color: var(--s-muted);
+  color: var(--muted);
   font-size: 0.67rem;
   line-height: 1.75;
   text-align: center;
+}
+
+.schedule-signature {
+  width: 82px;
+  margin: 10px auto 0 0;
 }
 
 .bottom-nav {
@@ -814,7 +997,7 @@ button:focus-visible {
   justify-content: center;
   gap: 3px;
   border: 0;
-  color: var(--s-muted);
+  color: var(--muted);
   background: transparent;
   cursor: pointer;
   font-size: 0.7rem;
@@ -851,8 +1034,23 @@ button:focus-visible {
 }
 
 @keyframes scheduleReveal {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes handsSettle {
+  from { opacity: 0; transform: translateY(14px) rotate(-0.8deg) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) rotate(-0.8deg) scale(1); }
+}
+
+@keyframes dailyCardReveal {
+  from { opacity: 0; transform: scale(1.025); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes modalReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @media (min-width: 520px) {
@@ -882,7 +1080,7 @@ button:focus-visible {
   }
 
   .hero-frame {
-    width: min(72vw, 300px);
+    width: min(54vw, 230px);
   }
 
   .today-block h1 {
@@ -916,6 +1114,92 @@ button:focus-visible {
   .exercise-icon {
     width: 40px;
     height: 40px;
+  }
+
+  .daily-visual-caption {
+    padding-inline: 12px;
+  }
+
+  .daily-visual-caption small {
+    font-size: 0.59rem;
+  }
+}
+
+@media (max-height: 760px) {
+  .entry-screen {
+    padding-top: max(10px, env(safe-area-inset-top));
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .entry-header {
+    min-height: 42px;
+  }
+
+  .hero-identity {
+    padding: 0;
+  }
+
+  .hero-frame {
+    width: min(39vw, 176px);
+  }
+
+  .date-line {
+    font-size: 0.82rem;
+  }
+
+  .ornament-line {
+    margin: 7px auto 4px;
+  }
+
+  .today-label {
+    font-size: 0.88rem;
+  }
+
+  .today-block h1 {
+    font-size: clamp(1.55rem, 7vw, 1.85rem);
+    line-height: 1.2;
+  }
+
+  .today-muscles {
+    min-height: 18px;
+    margin-top: 2px;
+    font-size: 0.7rem;
+  }
+
+  .entry-hands {
+    width: min(56vw, 220px);
+    margin-bottom: -14px;
+  }
+
+  .entry-button {
+    min-height: 52px;
+    border-radius: 16px;
+    font-size: 0.96rem;
+  }
+
+  .entry-footer-mark {
+    height: 68px;
+    margin-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .entry-signature {
+    width: 62px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
