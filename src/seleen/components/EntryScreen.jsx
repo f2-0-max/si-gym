@@ -1,10 +1,16 @@
-import seleenIdentity from '../../assets/seleen-identity.jpeg.asset.json'
+import seleenIdentity from '../../assets/seleen-fitness-identity.jpeg.asset.json'
+import dumbbellHands from '../../assets/seleen-dumbbell-hands.webp.asset.json'
 import { ArrowLeft, CalendarDays, Clock3 } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import SignatureMark from './SignatureMark'
 import { formatArabicDate, formatRiyadhTime, getRiyadhCalendarDate } from '../utils/date'
 
 export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
   const date = getRiyadhCalendarDate(now)
   const isRestDay = workout.exercises.length === 0
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const clock = mounted ? formatRiyadhTime(now) : ''
 
   return (
     <section className={`entry-screen screen-shell ${isLeaving ? 'screen-leaving' : ''}`} aria-labelledby="entry-title">
@@ -13,9 +19,9 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
           <p className="brand-name">سـيّلين</p>
           <p className="brand-subtitle">جدول تمارينك الأسبوعي</p>
         </div>
-        <div className="live-time" aria-label={`الوقت الآن ${formatRiyadhTime(now)}`}>
+        <div className="live-time" aria-label={mounted ? `الوقت الآن ${clock}` : 'الوقت الآن'}>
           <Clock3 aria-hidden="true" />
-          <span>{formatRiyadhTime(now)}</span>
+          <span>{clock}</span>
         </div>
       </header>
 
@@ -36,10 +42,20 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
         <h1 id="entry-title">{workout.title}</h1>
         <p className="today-muscles">{workout.muscles}</p>
 
-        <button className="primary-button entry-button" type="button" onClick={onEnter}>
-          <span>{isRestDay ? 'عرض جدولي الأسبوعي' : 'دخول إلى جدولي'}</span>
-          <ArrowLeft aria-hidden="true" />
-        </button>
+        <div className="entry-action">
+          <img
+            className="entry-hands"
+            src={dumbbellHands.url}
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <button className="primary-button entry-button" type="button" onClick={onEnter}>
+            <span>{isRestDay ? 'عرض جدولي الأسبوعي' : 'دخول إلى جدولي'}</span>
+            <ArrowLeft aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
       <div className="entry-footer-mark" aria-hidden="true">
@@ -47,6 +63,7 @@ export default function EntryScreen({ now, workout, onEnter, isLeaving }) {
         <span className="leaf">◆</span>
         <span />
       </div>
+      <SignatureMark placement="entry-signature" />
     </section>
   )
 }

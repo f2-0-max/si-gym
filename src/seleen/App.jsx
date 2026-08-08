@@ -21,6 +21,10 @@ export default function App() {
   const [isLeaving, setIsLeaving] = useState(false)
   const [progressByDay, setProgressByDay] = useState({})
 
+  useEffect(() => {
+    setProgressByDay(readProgress())
+  }, [])
+
   const todayWorkout = useMemo(() => getTodayWorkout(now), [now])
   const [selectedKey, setSelectedKey] = useState(todayWorkout.key)
   const weekDates = useMemo(() => getCurrentWeek(now), [now])
@@ -35,10 +39,6 @@ export default function App() {
     const completedExercises = exerciseDays.reduce((sum, day) => sum + (progressByDay[day.key] || []).length, 0)
     return totalExercises === 0 ? 0 : Math.round((completedExercises / totalExercises) * 100)
   }, [progressByDay])
-
-  useEffect(() => {
-    setProgressByDay(readProgress())
-  }, [])
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 30_000)

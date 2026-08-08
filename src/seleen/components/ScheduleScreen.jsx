@@ -1,7 +1,9 @@
-import seleenIdentity from '../../assets/seleen-identity.jpeg.asset.json'
+import seleenIdentity from '../../assets/seleen-fitness-identity.jpeg.asset.json'
 import { ArrowRight, CalendarDays, Check, Dumbbell, RotateCcw } from 'lucide-react'
 import ExerciseList from './ExerciseList'
+import DailyVisualCard from './DailyVisualCard'
 import ProgressRing from './ProgressRing'
+import SignatureMark from './SignatureMark'
 import WeekStrip from './WeekStrip'
 import { formatArabicDate } from '../utils/date'
 
@@ -52,6 +54,8 @@ export default function ScheduleScreen({
         onSelect={onSelectDay}
       />
 
+      <DailyVisualCard workout={selectedWorkout} />
+
       <section className="progress-panel" aria-label="ملخص الإنجاز">
         <ProgressRing value={progress} />
         <div className="progress-copy">
@@ -98,6 +102,7 @@ export default function ScheduleScreen({
       </main>
 
       <p className="safety-note">اختاري أوزانًا تناسب مستواك، وأوقفي التمرين عند الشعور بألم غير طبيعي.</p>
+      <SignatureMark placement="schedule-signature" />
 
       <nav className="bottom-nav" aria-label="التنقل داخل الجدول">
         <button type="button" className={selectedKey === todayKey ? 'nav-active' : ''} onClick={onToday}>
