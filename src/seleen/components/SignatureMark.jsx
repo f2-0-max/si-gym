@@ -1,11 +1,11 @@
-import signature from '../../assets/falkaldi-signature.webp.asset.json'
+import signature from '../../assets/falkaldi-logo.png.asset.json'
 
 export default function SignatureMark({ placement = '' }) {
   return (
     <img
       className={`signature-mark ${placement}`.trim()}
       src={signature.url}
-      alt="توقيع Faris Alkaldi"
+      alt="شعار Faris Alkaldi"
       loading="lazy"
       decoding="async"
     />

@@ -378,11 +378,8 @@ button:focus-visible {
   width: 72px;
   height: auto;
   overflow: hidden;
-  border: 1px solid rgba(116, 20, 45, 0.18);
-  border-radius: 18px;
-  background: #050505;
   object-fit: contain;
-  box-shadow: 0 11px 22px rgba(25, 14, 10, 0.17), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  filter: invert(1) brightness(0.25);
 }
 
 .entry-signature {
