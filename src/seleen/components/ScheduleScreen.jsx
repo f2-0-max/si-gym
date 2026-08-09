@@ -1,9 +1,9 @@
-import seleenIdentity from '../../assets/seleen-fitness-identity.jpeg.asset.json'
 import { ArrowRight, CalendarDays, Check, Dumbbell, RotateCcw } from 'lucide-react'
 import ExerciseList from './ExerciseList'
 import DailyVisualCard from './DailyVisualCard'
 import ProgressRing from './ProgressRing'
 import SignatureMark from './SignatureMark'
+import TrainingMotion from './TrainingMotion'
 import WeekStrip from './WeekStrip'
 import { formatArabicDate } from '../utils/date'
 
@@ -29,22 +29,16 @@ export default function ScheduleScreen({
   const allComplete = total > 0 && completed === total
 
   return (
-    <section className="schedule-screen screen-shell screen-entering" aria-labelledby="schedule-title">
+    <section className="schedule-screen screen-shell screen-entering" aria-label="جدول التمارين الأسبوعي">
       <header className="schedule-header">
         <button className="icon-button" type="button" onClick={onBack} aria-label="العودة إلى بوابة الدخول">
           <ArrowRight aria-hidden="true" />
         </button>
-        <div className="schedule-brand">
-          <img src={seleenIdentity.url} alt="" />
-          <span>سـيّلين</span>
-        </div>
+        <time className="schedule-current-date" dateTime={selectedDate.toISOString().slice(0, 10)}>{formatArabicDate(selectedDate)}</time>
         <div className="header-balance" aria-hidden="true" />
       </header>
 
-      <div className="schedule-heading">
-        <h1 id="schedule-title">جدولي الأسبوعي</h1>
-        <p>{formatArabicDate(selectedDate)}</p>
-      </div>
+      <TrainingMotion />
 
       <WeekStrip
         days={days}

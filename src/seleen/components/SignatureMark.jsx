@@ -5,7 +5,7 @@ export default function SignatureMark({ placement = '' }) {
     <img
       className={`signature-mark ${placement}`.trim()}
       src={signature.url}
-      alt="توقيع F ALKALDI"
+      alt="توقيع Faris Alkaldi"
       loading="lazy"
       decoding="async"
     />
