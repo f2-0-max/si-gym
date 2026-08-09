@@ -3,7 +3,6 @@ import ExerciseList from './ExerciseList'
 import DailyVisualCard from './DailyVisualCard'
 import ProgressRing from './ProgressRing'
 import SignatureMark from './SignatureMark'
-import TrainingMotion from './TrainingMotion'
 import WeekStrip from './WeekStrip'
 import { formatArabicDate } from '../utils/date'
 
@@ -37,8 +36,6 @@ export default function ScheduleScreen({
         <time className="schedule-current-date" dateTime={selectedDate.toISOString().slice(0, 10)}>{formatArabicDate(selectedDate)}</time>
         <div className="header-balance" aria-hidden="true" />
       </header>
-
-      <TrainingMotion />
 
       <WeekStrip
         days={days}
