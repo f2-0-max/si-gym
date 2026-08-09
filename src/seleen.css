@@ -255,20 +255,74 @@ button:focus-visible {
   position: relative;
   width: 100%;
   max-width: 430px;
-  margin: 3px auto 0;
+  margin: 7px auto 0;
+}
+
+.entry-portal {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 28px;
+  color: var(--burgundy);
+  background: transparent;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.entry-portal-label {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -2px;
+  color: var(--burgundy);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-shadow: 0 0 0 rgba(116, 20, 45, 0);
+  animation: portalGlow 2.15s ease-in-out infinite;
+}
+
+.entry-portal-label::before,
+.entry-portal-label::after {
+  width: 30px;
+  height: 1px;
+  margin-inline: 10px;
+  content: '';
+  background: linear-gradient(90deg, transparent, rgba(140, 152, 22, 0.72));
+}
+
+.entry-portal-label::after {
+  transform: scaleX(-1);
 }
 
 .entry-hands {
   position: relative;
   z-index: 2;
   display: block;
-  width: min(72vw, 310px);
+  width: min(62vw, 270px);
   height: auto;
-  margin: 0 auto -18px;
+  margin: 0 auto;
   filter: drop-shadow(0 14px 15px rgba(23, 23, 21, 0.17));
   pointer-events: none;
   transform: rotate(-0.8deg);
   animation: handsSettle 900ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.entry-portal:hover .entry-hands {
+  filter: drop-shadow(0 17px 18px rgba(23, 23, 21, 0.2));
+  transform: translateY(-2px) rotate(-0.8deg);
+}
+
+.entry-portal:active .entry-hands {
+  transform: translateY(1px) rotate(-0.8deg) scale(0.985);
 }
 
 .primary-button {
@@ -297,21 +351,6 @@ button:focus-visible {
   transform: scale(0.985);
 }
 
-.entry-button {
-  position: relative;
-  z-index: 1;
-  justify-content: space-between;
-  max-width: 430px;
-  margin: 0 auto;
-  font-size: 1.07rem;
-  font-weight: 600;
-}
-
-.entry-button svg {
-  width: 22px;
-  stroke-width: 2;
-}
-
 .entry-footer-mark {
   display: flex;
   align-items: flex-end;
@@ -336,10 +375,14 @@ button:focus-visible {
 
 .signature-mark {
   display: block;
-  width: 80px;
+  width: 72px;
   height: auto;
+  overflow: hidden;
+  border: 1px solid rgba(116, 20, 45, 0.18);
+  border-radius: 18px;
+  background: #050505;
   object-fit: contain;
-  filter: drop-shadow(0 7px 11px rgba(51, 28, 13, 0.13));
+  box-shadow: 0 11px 22px rgba(25, 14, 10, 0.17), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .entry-signature {
@@ -388,44 +431,86 @@ button:focus-visible {
   stroke-width: 1.8;
 }
 
-.schedule-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.12rem;
-  font-weight: 700;
-}
-
-.schedule-brand img {
-  width: 52px;
-  height: 36px;
-  border-radius: 12px;
-  object-fit: cover;
-  object-position: center 20%;
-  mix-blend-mode: multiply;
-}
-
 .header-balance {
   width: 46px;
 }
 
-.schedule-heading {
-  margin: 20px 0 17px;
-  text-align: center;
-}
-
-.schedule-heading h1 {
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(2rem, 8vw, 2.6rem);
-  line-height: 1.25;
-}
-
-.schedule-heading p {
-  margin: 4px 0 0;
+.schedule-current-date {
+  min-width: 0;
   color: var(--s-muted);
-  font-size: 0.92rem;
-  font-weight: 500;
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.training-motion {
+  position: relative;
+  display: grid;
+  height: clamp(168px, 45vw, 202px);
+  overflow: hidden;
+  margin: 14px 0 16px;
+  border: 1px solid rgba(140, 152, 22, 0.24);
+  border-radius: 24px;
+  background: #040506;
+  box-shadow: 0 18px 38px rgba(24, 20, 18, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  isolation: isolate;
+  place-items: center;
+}
+
+.training-motion::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: inherit;
+  box-shadow: inset 0 -34px 50px rgba(0, 0, 0, 0.2);
+  content: '';
+  pointer-events: none;
+}
+
+.training-motion-backdrop {
+  position: absolute;
+  inset: -28px;
+  z-index: 0;
+  background: url('/assets/seleen-training-poster.webp') center 43% / cover no-repeat;
+  filter: blur(24px) brightness(0.52) saturate(1.2);
+  opacity: 0.84;
+  transform: scale(1.18);
+}
+
+.training-motion-video {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.48));
+}
+
+.training-motion-control {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  z-index: 3;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 14px;
+  color: white;
+  background: rgba(13, 14, 15, 0.68);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  place-items: center;
+}
+
+.training-motion-control svg {
+  width: 18px;
+  fill: currentColor;
+  stroke-width: 1.7;
 }
 
 .week-strip {
@@ -968,7 +1053,7 @@ button:focus-visible {
 }
 
 .schedule-signature {
-  width: 82px;
+  width: 72px;
   margin: 10px auto 0 0;
 }
 
@@ -1041,6 +1126,19 @@ button:focus-visible {
 @keyframes handsSettle {
   from { opacity: 0; transform: translateY(14px) rotate(-0.8deg) scale(0.96); }
   to { opacity: 1; transform: translateY(0) rotate(-0.8deg) scale(1); }
+}
+
+@keyframes portalGlow {
+  0%, 100% {
+    opacity: 0.72;
+    color: var(--burgundy-deep);
+    text-shadow: 0 0 0 rgba(116, 20, 45, 0);
+  }
+  48% {
+    opacity: 1;
+    color: #961c42;
+    text-shadow: 0 0 9px rgba(116, 20, 45, 0.34), 0 0 22px rgba(140, 152, 22, 0.2);
+  }
 }
 
 @keyframes dailyCardReveal {
@@ -1123,6 +1221,11 @@ button:focus-visible {
   .daily-visual-caption small {
     font-size: 0.59rem;
   }
+
+  .training-motion {
+    height: 162px;
+    border-radius: 21px;
+  }
 }
 
 @media (max-height: 760px) {
@@ -1167,14 +1270,18 @@ button:focus-visible {
   }
 
   .entry-hands {
-    width: min(56vw, 220px);
-    margin-bottom: -14px;
+    width: min(49vw, 190px);
+    margin-bottom: 0;
   }
 
-  .entry-button {
-    min-height: 52px;
-    border-radius: 16px;
-    font-size: 0.96rem;
+  .entry-portal-label {
+    font-size: 0.92rem;
+  }
+
+  .entry-portal-label::before,
+  .entry-portal-label::after {
+    width: 24px;
+    margin-inline: 8px;
   }
 
   .entry-footer-mark {
@@ -1197,20 +1304,6 @@ button:focus-visible {
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
