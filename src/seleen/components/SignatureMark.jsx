@@ -1,4 +1,4 @@
-import signature from '../../assets/faris-alkaldi-logo.png.asset.json'
+import signature from '../../assets/faris-alkaldi-mark.png.asset.json'
 
 export default function SignatureMark({ placement = '' }) {
   return (
