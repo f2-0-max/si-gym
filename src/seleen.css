@@ -1779,3 +1779,11 @@ button:focus-visible {
     animation: none;
   }
 }
+
+.breakdown-bar.breakdown-rest {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(79, 73, 63, 0.16) 0 6px,
+    transparent 6px 12px
+  );
+}

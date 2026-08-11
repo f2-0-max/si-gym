@@ -38,8 +38,8 @@ export default function ProgressScreen({ stats }) {
           return (
             <div className="breakdown-row" key={day.key}>
               <span className="breakdown-day">{day.label}</span>
-              <div className="breakdown-bar" role="img" aria-label={`${day.label}: ${pct}%`}>
-                <i style={{ width: `${pct}%` }} />
+              <div className={`breakdown-bar ${total === 0 ? 'breakdown-rest' : ''}`} role="img" aria-label={total === 0 ? `${day.label}: راحة` : `${day.label}: ${pct}%`}>
+                <i style={{ width: total === 0 ? '0%' : `${pct}%` }} />
               </div>
               <b>{total === 0 ? '—' : `${done}/${total}`}</b>
             </div>
