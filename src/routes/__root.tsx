@@ -76,7 +76,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover",
+      },
+      { name: "theme-color", content: "#f7f1e8" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+      { name: "apple-mobile-web-app-title", content: "سـيّلين" },
+      { name: "format-detection", content: "telephone=no" },
       { title: "Lovable App" },
       { name: "description", content: "Lovable Generated Project" },
       { name: "author", content: "Lovable" },
@@ -98,6 +107,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "apple-touch-icon", href: "/icon-180.png", sizes: "180x180" },
     ],
   }),
   shellComponent: RootShell,
