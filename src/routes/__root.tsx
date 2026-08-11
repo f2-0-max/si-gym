@@ -78,8 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       {
         name: "viewport",
-        content:
-          "width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover",
+        content: "width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover",
       },
       { name: "theme-color", content: "#f7f1e8" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
