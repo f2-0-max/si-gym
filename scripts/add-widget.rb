@@ -17,9 +17,16 @@ group = project.main_group.new_group('SeleenWidget', 'SeleenWidget')
 end
 group.new_file('Info.plist')
 
+app_cfg = app.build_configurations.first.build_settings
+app_id = app_cfg['PRODUCT_BUNDLE_IDENTIFIER'] || 'com.seleen.fitness'
+mv = app_cfg['MARKETING_VERSION'] || '1.0'
+cv = app_cfg['CURRENT_PROJECT_VERSION'] || '1'
+
 widget.build_configurations.each do |c|
   s = c.build_settings
-  s['PRODUCT_BUNDLE_IDENTIFIER'] = 'com.seleen.fitness.widget'
+  s['PRODUCT_BUNDLE_IDENTIFIER'] = "#{app_id}.widget"
+  s['MARKETING_VERSION'] = mv
+  s['CURRENT_PROJECT_VERSION'] = cv
   s['PRODUCT_NAME'] = 'SeleenWidget'
   s['INFOPLIST_FILE'] = 'SeleenWidget/Info.plist'
   s['GENERATE_INFOPLIST_FILE'] = 'NO'
