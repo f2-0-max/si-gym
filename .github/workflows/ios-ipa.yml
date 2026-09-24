@@ -1,0 +1,70 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Create iOS project
+        run: |
+          rm -rf ios
+          npx cap add ios
+
+      - name: Generate icon and splash
+        run: npx --yes @capacitor/assets generate --ios || echo "assets step skipped"
+
+      - name: Set display name
+        run: |
+          PLIST=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName سـيّلين" "$PLIST" || \
+          /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string سـيّلين" "$PLIST"
+
+      - name: Sync
+        run: npx cap sync ios
+
+      - name: Build (unsigned)
+        run: |
+          cd ios/App
+          WS=App.xcworkspace
+          [ -d "$WS" ] && TARGET="-workspace $WS" || TARGET="-project App.xcodeproj"
+          xcodebuild $TARGET -scheme App -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build
+
+      - name: Package IPA
+        run: |
+          APP=$(find ios/App/build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n 1)
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          zip -qr Seleen.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Seleen-ipa
+          path: Seleen.ipa
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Seleen (latest)
+          files: Seleen.ipa
+          make_latest: true

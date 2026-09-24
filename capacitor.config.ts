@@ -23,7 +23,6 @@ const config: CapacitorConfig = {
     contentInset: "never",
     backgroundColor: "#f7f1e8",
     preferredContentMode: "mobile",
-    limitsNavigationsToAppBoundDomains: true,
   },
 };
 
