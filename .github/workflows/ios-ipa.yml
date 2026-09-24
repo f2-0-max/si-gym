@@ -70,7 +70,7 @@ jobs:
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: latest
-          name: Seleen (latest)
+          tag_name: build-${{ github.run_number }}
+          name: Seleen #${{ github.run_number }}
           files: Seleen.ipa
           make_latest: true
