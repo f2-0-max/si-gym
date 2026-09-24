@@ -40,6 +40,12 @@ jobs:
       - name: Sync
         run: npx cap sync ios
 
+      - name: Add home-screen widget
+        run: |
+          sudo gem install xcodeproj --no-document
+          ruby scripts/add-widget.rb
+
+
       - name: Build (unsigned)
         run: |
           cd ios/App
