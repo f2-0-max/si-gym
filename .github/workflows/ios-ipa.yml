@@ -60,6 +60,10 @@ jobs:
           APP=$(find ios/App/build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n 1)
           mkdir -p Payload
           cp -R "$APP" Payload/
+          echo "Bundle contents:"; ls -la Payload/*.app/PlugIns || true
+          if [ ! -d "$(ls -d Payload/*.app)/PlugIns/SeleenWidget.appex" ]; then
+            echo "::error::Widget SeleenWidget.appex is missing from the IPA"; exit 1
+          fi
           zip -qr Seleen.ipa Payload
 
       - uses: actions/upload-artifact@v4
